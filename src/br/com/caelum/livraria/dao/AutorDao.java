@@ -4,7 +4,10 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
+import javax.ejb.TransactionManagement;
+import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -20,7 +23,7 @@ public class AutorDao {
 	void aposCriacao() {
 	    System.out.println("[INFO] AutorDao foi criado.");
 	}
-	
+
 	public void salva(Autor autor) {
 	    System.out.println("[INFO] Salvando o Autor " + autor.getNome());
 	    entityManager.persist(autor);

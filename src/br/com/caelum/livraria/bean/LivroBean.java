@@ -6,9 +6,9 @@ import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 
 import br.com.caelum.livraria.dao.AutorDao;
-import br.com.caelum.livraria.dao.LivroDao;
 import br.com.caelum.livraria.modelo.Autor;
 import br.com.caelum.livraria.modelo.Livro;
+import br.com.caelum.livraria.service.LivroService;
 
 @Model
 public class LivroBean {
@@ -16,7 +16,7 @@ public class LivroBean {
 	private Livro livro = new Livro();
 	private Integer autorId;
 	@Inject
-	private LivroDao livroDao;
+	private LivroService livroBean;
 	@Inject
 	private AutorDao autorDao;
 
@@ -25,7 +25,7 @@ public class LivroBean {
 		Autor autor = this.autorDao.buscaPelaId(this.autorId);
 		this.livro.setAutor(autor);
 		
-		this.livroDao.salva(livro);
+		this.livroBean.salva(livro);
 		
 		this.livro = new Livro();
 	}
@@ -47,6 +47,6 @@ public class LivroBean {
 	}
 	
 	public List<Livro> getLivros() {
-		return this.livroDao.todosLivros();
+		return this.livroBean.todosLivros();
 	}
 }
