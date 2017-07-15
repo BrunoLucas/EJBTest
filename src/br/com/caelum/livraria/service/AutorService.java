@@ -19,7 +19,7 @@ public class AutorService {
 	@TransactionAttribute(TransactionAttributeType.REQUIRED)
 	public void adiciona(Autor autor){
 		autorDao.salva(autor);
-//		throw new RuntimeException("Erro runtime");
+		throw new LivrariaException("Serviço externo deu erro!");
 	}
 	public List<Autor> todosAutores(){
 		return autorDao.todosAutores();
