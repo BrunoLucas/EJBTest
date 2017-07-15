@@ -20,4 +20,7 @@ public class LivroService {
 		return livroDao.todosLivros();
 	}
 	
+	public List<Livro> obterLivrosPeloTitulo(String titulo){
+		return livroDao.obterLivrosPeloTitulo(titulo);
+	}
 }

@@ -13,13 +13,23 @@ public class LivroDao {
 
 	@PersistenceContext
 	private EntityManager entityManager;
-	
+
 	public void salva(Livro livro) {
-		entityManager.persist(livro);;
+		entityManager.persist(livro);
+		;
 	}
-	
+
 	public List<Livro> todosLivros() {
 		return entityManager.createQuery("select l from Livro l", Livro.class).getResultList();
 	}
-	
+
+	public List<Livro> obterLivrosPeloTitulo(String titulo) {
+
+		List<Livro> listaDeLivros = entityManager
+				.createQuery("select l from Livro l where l.titulo like :titulo", Livro.class)
+				.setParameter("titulo", "%" + titulo + "%").getResultList();
+
+		return listaDeLivros;
+	}
+
 }
